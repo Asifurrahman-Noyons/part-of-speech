@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Grammar Tabs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles */
+        .card {
+            border-radius: 12px;
+            padding: 25px;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .example-box {
+            background-color: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 5px solid #4F46E5;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4F46E5;
+            margin-bottom: 12px;
+        }
+        .section-content {
+            font-size: 1rem;
+            color: #333333;
+            margin-bottom: 16px;
+        }
+        .example-list {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        .example-list li {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #555555;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e5e7eb;
+            border-radius: 20px;
+            height: 10px;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #4F46E5;
+            border-radius: 20px;
+        }
+        .tab-container {
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #4F46E5 #e5e7eb;
+        }
+        .tab-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .tab-container::-webkit-scrollbar-thumb {
+            background-color: #4F46E5;
+            border-radius: 10px;
+        }
+        .tab-container::-webkit-scrollbar-track {
+            background-color: #e5e7eb;
+        }
+        .tab-button {
+            flex: 0 0 auto;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+        .tab-button.active {
+            background-color: #4F46E5;
+            color: #ffffff;
+        }
+        .tab-button:hover {
+            background-color: #6366F1;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <div class="container mx-auto p-4">
+        <!-- Tab Buttons (Scrollable) -->
+        <div class="tab-container mb-6">
+          <button class="tab-button active" data-tab="part-of-speech">Part of Speech</button>
+          <button class="tab-button" data-tab="nouns">Nouns</button>
+            <button class="tab-button " data-tab="pronouns">Pronouns</button>
+            <button class="tab-button" data-tab="adjectives">Adjectives</button>
+            <button class="tab-button" data-tab="verbs">Verbs</button>
+            <button class="tab-button" data-tab="adverbs">Adverbs</button>
+            <button class="tab-button" data-tab="prepositions">Prepositions</button>
+            <button class="tab-button" data-tab="conjunctions">Conjunctions</button>
+            <button class="tab-button" data-tab="interjections">Interjections</button>
+            
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <!-- Content Section -->
+        <div id="content-container" class="space-y-8">
+            <!-- Content dynamically injected here -->
+        </div>
+    </div>
+
+    <script>
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const contentContainer = document.getElementById('content-container');
+        const progressBar = document.getElementById('progress-bar');
+
+        const tabsData = {
+           "part-of-speech": [
+                {
+                    "sectionTitle": "Parts of Speech",
+                    "sectionContent": "In a sentence, words are divided into different classes or kinds because of their functions and usage. This is described by the term 'Parts of Speech'. </br></br> Parts of speech help to understand the uses or functions of words and how different words can make a meaningful sentence. </br> </br> একটি বাক্যে শব্দগুলো তাদের কার্যকারিতা এবং ব্যবহারের কারণে বিভিন্ন শ্রেণীতে ভাগ করা হয়। এই শ্রেণীভাগকে বলা হয় 'Parts of Speech' (শব্দের বিভাজন)। </br></br> Parts of speech শব্দগুলির ব্যবহারের ধরন এবং কীভাবে বিভিন্ন শব্দ একটি অর্থপূর্ণ বাক্য তৈরি করতে সাহায্য করতে পারে, তা বোঝাতে সাহায্য করে।",
+                    "examples": [
+                        "There are Eight types of parts of speech: ",
+                        "Noun",
+                        "Pronoun",
+                        "Verb",
+                        "Adverb",
+                        "Adjective",
+                        "Preposition",
+                        "Conjunction",
+                        "Interjection"
+                    ]
+                }
+            ],
+         "nouns": [
+    {
+        "sectionTitle": "Noun",
+        "sectionContent": "Name of anything like person, animal, place, thing, abstract, idea, action, state or quality is called Noun. যেকোন ব্যাক্তি, প্রাণী, বস্তু, ভাব, ভাবনা, কাজ, অবস্থান, দোষ-গুণ, ইত্যাদির নামকে Noun বলে।",
+        "examples": [
+            "Examples of Nouns: Maria, Girl, Dhaka, Book, Teacher, Water, Honesty, Happiness, Family, Sleep, Death.",
+            "Example: A boy is coming towards us. (Here, 'boy' is a noun)"
+        ]
+    },
+    {
+        "sectionTitle": "Functions of Nouns",
+        "sectionContent": "Noun plays the role in a sentence as subject of a verb or object of a verb or both subject and object of a verb. Noun বাক্যে verb-এর subject অথবা object অথবা উভয়ের ভূমিকা পালন করে।",
+        "examples": [
+            "Examples in Sentences: Education removes darkness. (Here, 'Education' is the subject, 'darkness' is the object)",
+            "Poverty is curse. (Here, 'Poverty' is the subject)"
+        ]
+    },
+    {
+        "sectionTitle": "Classification of Nouns",
+        "sectionContent": "Nouns can be classified into five categories:</br>1. Proper Noun</br>2. Common Noun</br>3. Collective Noun</br>4. Material Noun</br>5. Abstract Noun",
+        "examples": [
+            "Example: Dhaka is the capital of Bangladesh. (Here, 'Dhaka' is a Proper Noun, 'capital' is a Common Noun)"
+        ]
+    },
+    {
+        "sectionTitle": "Proper Noun",
+        "sectionContent": "Proper noun is the name of some particular person, place or thing. Proper noun always starts with a capital letter. Proper noun হলো নির্দিষ্ট কোনো ব্যক্তি, স্থান বা বস্তুর নাম। Proper noun সর্বদা বড় অক্ষর দিয়ে শুরু হয়।",
+        "examples": [
+            "Examples: Dhaka, Sunny, Rimi.",
+            "Example: Sunny is a smart boy. (Here, 'Sunny' is a Proper Noun)"
+        ]
+    },
+    {
+        "sectionTitle": "Common Noun",
+        "sectionContent": "Common noun is a noun that is not the name of a particular thing or class but that represents one or all of the members of that class or thing. Common noun হলো একটি noun যা নির্দিষ্ট কোনো বস্তু বা শ্রেণীর নাম নয় বরং সেই শ্রেণীর এক বা সব সদস্যকে নির্দেশ করে।",
+        "examples": [
+            "Examples: boy, girl, book, table.",
+            "Example: Sunny is a smart boy. (Here, 'boy' is a Common Noun while 'Sunny' is a Proper Noun)"
+        ]
+    },
+    {
+        "sectionTitle": "Collective Noun",
+        "sectionContent": "A collective noun is the name of a collection or number or group of things or persons taken together and considered as one whole. Collective noun হলো একটি নাম যা কোনো কিছু বা ব্যক্তিদের দল বা সংগ্রহকে নির্দেশ করে এবং একসাথে একটি পূর্ণ হিসেবে বিবেচিত হয়।",
+        "examples": [
+            "Examples: crowd, team, family.",
+            "Example: The navy is ready for the voyage. (Here, 'navy' is a Collective Noun)"
+        ]
+    },
+    {
+        "sectionTitle": "Material Noun",
+        "sectionContent": "A material noun is the name of material, substance or ingredient of something. Material noun হলো কোনো বস্তু, পদার্থ বা উপাদানের নাম।",
+        "examples": [
+            "Examples: gold, milk, water.",
+            "Example: The necklace is made of gold. (Here, 'gold' is a Material Noun)"
+        ]
+    },
+    {
+        "sectionTitle": "Abstract Noun",
+        "sectionContent": "An Abstract Noun is usually the name of a quality, action, state or concept. Abstract noun হলো সাধারণত গুণ, কর্ম, অবস্থা বা ধারণার নাম। Abstract nouns are the names of such things that can’t be touched, tested, smelt or heard.",
+        "examples": [
+            "Examples: honesty, bravery, wisdom.",
+            "Example: Honesty is the best policy. (Here, 'honesty' is an Abstract Noun)"
+        ]
+    }
+],
+
+"pronouns": [
+    {
+        "sectionTitle": "Pronoun",
+        "sectionContent": "A Pronoun is a word that is used instead of a noun-equivalent. It is the replacement of a noun. Pronoun সাধারণত Noun বা Noun এর সমতুল্য কিছুর পরিবর্তে বসে। ইহা Noun কে প্রতিস্থাপন করে।",
+        "examples": [
+            "Common pronouns: I, me, he, she, him, his, her, they, them, it, we, us, etc.",
+            "Example: She is a pretty girl.",
+            "Example: His contribution is appreciable.",
+            "Example: They are unbeatable.",
+            "Example: This job is done by them."
+        ]
+    },
+    {
+        "sectionTitle": "Role of Pronoun in a Sentence",
+        "sectionContent": "Pronouns are usually short words and they are used to make sentences less cluttered and less repetitive.",
+        "examples": [
+            "Example: Rimi and Raju like each other.",
+            "Example: We should help one another."
+        ]
+    },
+    {
+        "sectionTitle": "Kinds of Pronouns",
+        "sectionContent": "There are many different kinds of pronouns; such as:</br>1. Personal Pronoun</br>2. Possessive Pronoun</br>3. Reflexive Pronoun</br>4. Intensive Pronoun</br>5. Indefinite Pronoun</br>6. Demonstrative Pronoun</br>7. Relative Pronoun</br>8. Interrogative Pronoun</br>9. Reciprocal Pronoun",
+        "examples": []
+    },
+    {
+        "sectionTitle": "Personal Pronoun",
+        "sectionContent": "A personal pronoun is used instead of a person. When a personal pronoun is the subject of a verb, it is called Subjective Pronoun (I, we, he, she, they, and you). When it acts as the object, it is called Objective Pronoun (me, you, her, him, it, us, them, and whom).",
+        "examples": [
+            "Example: I love this book. ('I' is a Subjective Pronoun)",
+            "Example: Give it to him. ('him' is an Objective Pronoun)"
+        ]
+    },
+    {
+        "sectionTitle": "Possessive Pronoun",
+        "sectionContent": "A Possessive Pronoun shows ownership of something. Such as his, hers, its, mine, yours, ours, and theirs.",
+        "examples": [
+            "Example: This pen is mine.",
+            "Example: Yours one is not real.",
+            "Example: Take hers from the room."
+        ]
+    },
+    {
+        "sectionTitle": "Reflexive Pronoun",
+        "sectionContent": "Reflexive Pronoun refers back to the subject in the sentence. They are myself, himself, herself, ourselves, themselves, yourselves, and itself.",
+        "examples": [
+            "Example: I ask myself when I take a decision.",
+            "Example: He spoke to himself.",
+            "Example: We learn about ourselves every day."
+        ]
+    },
+    {
+        "sectionTitle": "Intensive Pronoun",
+        "sectionContent": "An Intensive Pronoun is used for emphasis. Intensive pronouns are myself, himself, herself, yourself, itself, yourselves, ourselves, and themselves.",
+        "examples": [
+            "Example: I myself have done the job.",
+            "Example: The president himself visited the area.",
+            "Example: He himself can’t do it."
+        ]
+    },
+    {
+        "sectionTitle": "Indefinite Pronoun",
+        "sectionContent": "An Indefinite Pronoun refers to an indefinite or non-specific person or thing. Examples include any, anything, some, someone, everybody, nobody, several, etc.",
+        "examples": [
+            "Example: All people gathered here for the same purpose.",
+            "Example: Does anyone know anything about the matter?",
+            "Example: Each must do his best."
+        ]
+    },
+    {
+        "sectionTitle": "Demonstrative Pronoun",
+        "sectionContent": "A Demonstrative Pronoun points out a noun. This, these, that, and those are demonstrative pronouns.",
+        "examples": [
+            "Example: You can smell that from here.",
+            "Example: This smells good.",
+            "Example: Those were bad days."
+        ]
+    },
+    {
+        "sectionTitle": "Relative Pronoun",
+        "sectionContent": "A Relative Pronoun introduces or links one phrase or clause to another in the sentence. Examples include that, who, whom, where, when, whoever, and which.",
+        "examples": [
+            "Example: The person who called me is my uncle.",
+            "Example: The pen which I lost was red.",
+            "Example: You should buy the book that you need for the course."
+        ]
+    },
+    {
+        "sectionTitle": "Interrogative Pronoun",
+        "sectionContent": "An Interrogative Pronoun is used to ask a question. Examples include who, which, what, whom, whose.",
+        "examples": [
+            "Example: What’s happened?",
+            "Example: Who designed this website?",
+            "Example: Whose mobile is this?"
+        ]
+    },
+    {
+        "sectionTitle": "Reciprocal Pronoun",
+        "sectionContent": "A Reciprocal Pronoun refers to the relations between two or more persons or things. Examples include each other and one another.",
+        "examples": [
+            "Example: Rimi and Raju like each other.",
+            "Example: They do not tolerate each other.",
+            "Example: We should help one another."
+        ]
+    }
+],
+            "adjectives": [
+            {
+    "sectionTitle": "Adjectives",
+    "sectionContent": "An adjective is a part of speech (word) that modifies a noun or a pronoun by qualifying, specifying or describing it. </br></br> Adjective বলতে এমন এক ধরণের শব্দমালাকে বোঝায় যারা কোন Noun বা Pronoun এর যোগ্যতা, স্বতন্ত্রতা, বা বর্ণনা সম্পর্কে ধারণা দিয়ে থাকে।",
+    "examples": [
+        "Examples of Adjectives: great, good, bad, wise, poor, nice, happy, pretty, angry, blue.",
+        "Example: He gives me a great idea.",
+        "Example: Mr. Rahim is a good person."
+    ]
+},
+{
+    "sectionTitle": "Adjective Classification",
+    "sectionContent": "Adjectives can be classified into various types based on their role in a sentence. These types are as follows:",
+    "examples": [
+        "Qualitative Adjective or Adjective of Quality",
+        "Quantitative Adjective or Adjective of Quantity",
+        "Numeric Adjective or Adjective of Number",
+        "Demonstrative Adjective",
+        "Distributive Adjective",
+        "Possessive Adjective",
+        "Interrogative Adjective"
+    ]
+},
+{
+    "sectionTitle": "Qualitative Adjective",
+    "sectionContent": "Qualitative adjectives describe the quality of a noun or pronoun, such as good, bad, wise, beautiful, etc.",
+    "examples": [
+        "Example: He gives me a great idea.",
+        "Example: Mr. Rahim is a good person.",
+        "Example: He is a bad guy."
+    ]
+},
+{
+    "sectionTitle": "Quantitative Adjective",
+    "sectionContent": "Quantitative adjectives specify the quantity of a noun or pronoun, such as some, enough, much, etc.",
+    "examples": [
+        "Example: I have enough money to buy the car.",
+        "Example: The whole country congratulated the president.",
+        "Example: She wants all the money."
+    ]
+},
+{
+    "sectionTitle": "Numeric Adjective",
+    "sectionContent": "Numeric adjectives express the number or order of something or someone. They can be cardinal, ordinal, or multiplicative.",
+    "examples": [
+        "Example: He can eat ten eggs at a time.",
+        "Example: She is the first girl in the class.",
+        "Example: The house owner does not rent the room to a single person."
+    ]
+},
+{
+    "sectionTitle": "Demonstrative Adjective",
+    "sectionContent": "Demonstrative adjectives specify a noun or pronoun, such as this, that, those, these.",
+    "examples": [
+        "Example: This boy is good.",
+        "Example: That is her room.",
+        "Example: These are the books to follow."
+    ]
+},
+{
+    "sectionTitle": "Distributive Adjective",
+    "sectionContent": "Distributive adjectives express the distributive state of nouns, such as every, each, neither, either, both.",
+    "examples": [
+        "Example: Every movie in the series is popular.",
+        "Example: Both the boys are appreciated by them.",
+        "Example: Each person will get the reward."
+    ]
+},
+{
+    "sectionTitle": "Possessive Adjective",
+    "sectionContent": "Possessive adjectives show possession or belongingness, such as his, her, my, our, their.",
+    "examples": [
+        "Example: This is her cell phone.",
+        "Example: I have seen their house.",
+        "Example: Our house is a two-storied house."
+    ]
+},
+{
+    "sectionTitle": "Interrogative Adjective",
+    "sectionContent": "Interrogative adjectives modify nouns in interrogative sentences, such as which, what, whose.",
+    "examples": [
+        "Example: What kind of man is he?",
+        "Example: Whose phone is this?",
+        "Example: Which program are you listening to?"
+    ]
+}
+
+],
+
+  "verbs": [
+    {
+      "sectionTitle": "Verb",
+      "sectionContent": "A verb is a word or a group of words (phrase) that is/are used to describe an action, state or occurrence. </br></br>Verb হচ্ছে এমন শব্দ বা শব্দ গুচ্ছ যা দ্বারা কোন কাজ, অবস্থা বা ঘটনাকে বোঝায়।",
+      "examples": [
+        "Actions: read, do, walk, bring, run, learn, eat, etc.",
+        "States: be, exist, stand, etc.",
+        "Occurrences: happen, become, etc."
+      ]
+    },
+    {
+      "sectionTitle": "Role of Verb in a Sentence",
+      "sectionContent": "Verb forms the main part of the predicate of a sentence. Every complete sentence must have a verb.",
+      "examples": [
+        "Examples: ",
+        "- He is a good man. (Using the most common to be verb)",
+        "- We learn from the Web.",
+        "- She speaks in English.",
+        "- Rimi is thinking about the incident."
+      ]
+    },
+    {
+      "sectionTitle": "Kinds of Verb",
+      "sectionContent": "Verb is divided into two major categories: Principal or Lexical (Main) Verbs, and Auxiliary (Helping) Verbs.",
+      "examples": [
+        "Principal or Lexical Verbs",
+        "Auxiliary or Helping Verbs"
+      ]
+    },
+    {
+      "sectionTitle": "i. Principal or Lexical Verb",
+      "sectionContent": "Verbs which are used independently without the help of other verbs, are called Principal or Main verb.",
+      "examples": [
+        "- He is a singer.",
+        "- She does her job.",
+        "- They have many problems."
+      ]
+    },
+    {
+      "sectionTitle": "a. Transitive Verb",
+      "sectionContent": "Transitive verbs are action verbs that require one or more objects which receive the action of the verb in the sentence.",
+      "examples": [
+        "- She reads the book. (verb with the object ‘the book’)",
+        "- He gave me a mobile phone. (verb with the object ‘me’ and ‘mobile phone’)",
+        "- I saw her in the market."
+      ]
+    },
+    {
+      "sectionTitle": "b. Intransitive Verb",
+      "sectionContent": "Intransitive verbs are action verbs that require no direct object in the sentence.",
+      "examples": [
+        "- She reads. (no object in the sentence)",
+        "- Sit down here.",
+        "- The birds are flying.",
+        "- She is singing.",
+        "- The sun set."
+      ]
+    },
+    {
+      "sectionTitle": "ii. Auxiliary or Helping Verb",
+      "sectionContent": "Verbs which help a Principal verb to form a sentence are called Auxiliary or Helping verbs.",
+      "examples": [
+        "- He is singing a song.",
+        "- She is doing her job.",
+        "- They are facing many problems."
+      ]
+    },
+    {
+      "sectionTitle": "Primary or Tense Auxiliaries",
+      "sectionContent": "These are the verbs 'be', 'am', 'is', 'are', 'was', 'were', 'been', 'having', 'do', 'does', and 'did'. They are used in various forms.",
+      "examples": [
+        "- I am doing the job. (present Continuous)",
+        "- Ryan was sleeping that moment. (past Continuous)",
+        "- It is done by her. (passive form)",
+        "- Rifat reads the book. (present form as principle verb)"
+      ]
+    },
+    {
+      "sectionTitle": "Modal Auxiliaries",
+      "sectionContent": "These auxiliary verbs show ability, permission, obligation, suggestion, etc. They include: can, could, shall, should, will, would, may, might, must, need, dare, etc.",
+      "examples": [
+        "- Shall we start the game? (Asking the question)",
+        "- You should read the book attentively. (Suggest)",
+        "- Would you give a cup of coffee? (Request)",
+        "- I can do the sum. (Ability)"
+      ]
+    },
+    {
+      "sectionTitle": "Finite and Non-finite Verbs",
+      "sectionContent": "Finite verbs change their form according to the number, person, or tense. Non-finite verbs do not change based on person, number, or tense.",
+      "examples": [
+        "Finite Verb Example: 'I saw her crying.'",
+        "Non-finite Verb Example: 'He likes to play football.'"
+      ]
+    },
+    {
+      "sectionTitle": "Non-finite Verbs",
+      "sectionContent": "Non-finite verbs do not change according to the subject and cannot act as the main verb in a sentence. There are three types: Infinitive, Gerund, and Participles.",
+      "examples": [
+        "Infinitive: 'He likes to play football.'",
+        "Gerund: 'Swimming is good for health.'",
+        "Participle: 'A swimming snake bit him in the leg.'"
+      ]
+    },
+    {
+      "sectionTitle": "Infinitive",
+      "sectionContent": "An infinitive verb is formed by 'to' + base form of a verb.",
+      "examples": [
+        "- He likes to play football.",
+        "- Honey is sweet to taste."
+      ]
+    },
+    {
+      "sectionTitle": "Gerund",
+      "sectionContent": "A gerund is formed by adding 'ing' to the base form of a verb and functions as a noun.",
+      "examples": [
+        "- Swimming is good for health.",
+        "- I saw her crying."
+      ]
+    },
+    {
+      "sectionTitle": "Present Participle",
+      "sectionContent": "Present participles are formed by adding 'ing' to the base form of a verb and function as adjectives.",
+      "examples": [
+        "- A swimming snake bit him in the leg.",
+        "- Look at the setting sun."
+      ]
+    },
+    {
+      "sectionTitle": "Past Participle",
+      "sectionContent": "Past participles are formed by adding 'ed', 'd', or 't' to the base form of a verb and are used to form perfect tenses or passive voice.",
+      "examples": [
+        "- They have invited him to the party.",
+        "- The faded flower attracts none."
+      ]
+    }
+  ],
+
+
+  "adverbs": [
+    {
+      "sectionTitle": "Adverb",
+      "sectionContent": "An adverb is a word which modifies or qualifies the meaning of a verb, adjective, other adverb or any other word(s) or phrase(s) in a sentence; such as quickly, firmly, lightly, carefully, extremely, etc. </br></br>Adverb এর কাজ হচ্ছে কোন Verb, Adjective বা Adverb সম্পর্কে অতিরিক্ত তথ্য দেওয়া বা প্রদত্ত তথ্যকে আরো তাৎপর্যতাপূর্ণ করে তোলা।",
+      "examples": []
+    },
+    {
+      "sectionTitle": "Example",
+      "sectionContent": "Example: </br> - The leopard runs quickly. ( Here quickly modifies the verb) </br> - He works extremely hard. (Here extremely modifies the adverb) </br> - Most of our countrymen are very poor. (Here very modifies the adjective) </br> - I absolutely have no idea about the matter.",
+      "examples": []
+    },
+    {
+      "sectionTitle": "Function of adverb in a sentence",
+      "sectionContent": "Adverb adds information and impression about time, manner, place etc. in a sentence.",
+      "examples": []
+    },
+    {
+      "sectionTitle": "Form of Adverbs",
+      "sectionContent": "Many adverbs that express how an action is performed, end in ‘ly’. However, there are many exceptions, like fast, well, never, least, more, far, now, very, just, still, etc.",
+      "examples": []
+    },
+    {
+      "sectionTitle": "Kinds of Adverbs",
+      "sectionContent": "There are different kinds of adverbs according to their functions in a sentence.",
+      "examples": []
+    },
+    {
+      "sectionTitle": "i. Adverb of Time",
+      "sectionContent": "Indicates the time of an action, and answer the question ‘when’? </br>Such as now, soon, still, then, today, yet, since, back, ago, already, before, after, recently, today, lately, tomorrow, once, someday, early, etc.",
+      "examples": [
+        "I have already finished my job.",
+        "I will do it now.",
+        "The result will be published tomorrow."
+      ]
+    },
+    {
+      "sectionTitle": "ii. Adverb of Manner",
+      "sectionContent": "Expresses the manner of an action, and answer the question ‘How’? </br>Such as happily, slowly, quickly, carefully, loudly, easily, fast, bravely, hard, well, badly, etc.",
+      "examples": [
+        "Rafat is speaking quietly.",
+        "He is doing the job carefully.",
+        "The boy is crying loudly."
+      ]
+    },
+    {
+      "sectionTitle": "iii. Adverb of Place",
+      "sectionContent": "Indicates the place of an action, and answer the question ‘Where’? </br>Such as here, there, up, down, in, out, by, hither, thither, where, anywhere, somewhere, everywhere, nowhere, etc.",
+      "examples": [
+        "Go out.",
+        "I love to be here.",
+        "People still live there."
+      ]
+    },
+    {
+      "sectionTitle": "iv. Adverb of Degree or Quantity",
+      "sectionContent": "Expresses quantity, and answer the question ‘How much/ How far/ to what extent’? </br>Such as extremely, fully, quite, almost, very much, too, a lot, totally, absolutely, fairly, hardly, etc.",
+      "examples": [
+        "He is quite wrong.",
+        "She is fully cured.",
+        "He is bad enough to kill you."
+      ]
+    },
+    {
+      "sectionTitle": "v. Adverb of Affirmation and negation",
+      "sectionContent": "Indicate assertion and express the one’s reaction to question. </br>Such as yes, no, yeah.",
+      "examples": [
+        "Yes, I can.",
+        "No, she isn’t."
+      ]
+    },
+    {
+      "sectionTitle": "vi. Adverb of Frequency",
+      "sectionContent": "Expresses the frequency of an action and answer the question 'How often'? </br>Such as never, ever, always, often, seldom, everyday, sometimes, usually, normally, frequently, rarely, hardly, scarcely, once a week, etc.",
+      "examples": [
+        "He always helps the poor.",
+        "The barking dog seldom bites."
+      ]
+    },
+    {
+      "sectionTitle": "vii. Adverb of reason",
+      "sectionContent": "Expresses the reason and make the conclusion. </br>Such as hence, therefore, thence.",
+      "examples": [
+        "He therefore resigned the job."
+      ]
+    },
+    {
+      "sectionTitle": "Conjunctive Adverb",
+      "sectionContent": "Conjunctive adverb is used to join two clauses together. </br>Such as also, finally, furthermore, consequently, hence, however, incidentally, indeed, instead, likewise, nevertheless, meanwhile, next, nonetheless, otherwise, then, still, thus, and therefore.",
+      "examples": [
+        "The people waited for an hour; finally, the train comes to the station.",
+        "The policemen searched the market; indeed the gunman has escaped through the basement door."
+      ]
+    },
+    {
+      "sectionTitle": "Position of Adverb",
+      "sectionContent": "General positions of adverbs are as follows:"
+    },
+    {
+      "sectionTitle": "i. Adverbs of time",
+      "sectionContent": "Adverbs of time usually come at the end of a sentence or at the beginning of sentence.",
+      "examples": [
+        "It may rain today.",
+        "Last night I dreamt a sweet dream."
+      ]
+    },
+    {
+      "sectionTitle": "ii. Adverbs of place",
+      "sectionContent": "Adverbs of place usually follow the verb.",
+      "examples": [
+        "The doctor is in.",
+        "They were everywhere."
+      ]
+    },
+    {
+      "sectionTitle": "iii. Adverbs of Degree or Quantity",
+      "sectionContent": "Adverbs of Degree or Quantity come before the verb, adjective or adverb.",
+      "examples": [
+        "He is fairly good.",
+        "You are quite wrong.",
+        "He can run very fast."
+      ]
+    }
+
+],
+  
+
+
+  "prepositions": [
+    {
+      "sectionTitle": "Prepositions",
+      "sectionContent": "A Preposition is a word placed or positioned before a noun or a pronoun or noun equivalent to show the relationship between a noun or pronoun and other words in a sentence.</br></br> Preposition হলো এমন একটি শব্দ যা একটি Noun বা Pronoun এর সাথে বাক্যের অন্য কোন শব্দের সম্পর্ক দেখায়।",
+      "examples": [
+        "Examples of Prepositions: <b>in</b>, <b>on</b>, <b>at</b>, <b>under</b>, <b>over</b>, <b>between</b>.",
+        "Example: The book is <b>on</b> the table."
+      ]
+    },
+    {
+      "sectionTitle": "Kinds of Prepositions",
+      "sectionContent": "Prepositions are of five different kinds: Simple Prepositions, Double Prepositions, Compound Prepositions, Participial Prepositions, and Prepositions of Reason/Purpose.</br></br> Preposition পাঁচটি প্রধান ধরনের হয়ে থাকে: Simple Prepositions, Double Prepositions, Compound Prepositions, Participial Prepositions, এবং Prepositions of Reason/Purpose।",
+      "examples": [
+        "Simple Preposition: He goes <b>to</b> school.",
+        "Double Preposition: He will be back <b>within</b> three days.",
+        "Compound Preposition: Rahat is talking <b>in behalf of</b> his team.",
+        "Participial Preposition: <b>Considering</b> the quality, the price is not high.",
+        "Preposition of Reason/Purpose: Died <b>for</b> the country."
+      ]
+    },
+    {
+      "sectionTitle": "Prepositions of Place, Position, and Direction",
+      "sectionContent": "Prepositions used to indicate the place, position, or direction of something.</br></br> Place, Position এবং Direction বোঝাতে ব্যবহৃত Prepositions এর মধ্যে রয়েছে: <b>in</b>, <b>at</b>, <b>on</b>, <b>by</b>, <b>above</b>, <b>to</b>, <b>towards</b>, <b>from</b>, <b>into</b>.",
+      "examples": [
+        "The book is <b>on</b> the table.",
+        "He is sitting <b>at</b> the window.",
+        "Go <b>to</b> university.",
+        "She walked <b>towards</b> the door."
+      ]
+    },
+    {
+      "sectionTitle": "Prepositions of Time",
+      "sectionContent": "Prepositions used to indicate time or duration.</br></br> Time বা Duration এর জন্য ব্যবহৃত Prepositions এর মধ্যে রয়েছে: <b>at</b>, <b>after</b>, <b>before</b>, <b>by</b>, <b>during</b>, <b>from</b>, <b>for</b>, <b>in</b>, <b>on</b>, <b>since</b>, <b>within</b>, <b>throughout</b>.",
+      "examples": [
+        "He will arrive <b>at</b> 10 a.m.",
+        "I have been waiting for you <b>since</b> 9 o'clock.",
+        "We will leave <b>by</b> 6 p.m.",
+        "She studied <b>throughout</b> the year."
+      ]
+    },
+    {
+      "sectionTitle": "Prepositions of Reason or Purpose",
+      "sectionContent": "Prepositions used to indicate reason or purpose for an action.</br></br> কোন কাজের কারণ বা উদ্দেশ্য বোঝাতে ব্যবহৃত Prepositions এর মধ্যে রয়েছে: <b>for</b>, <b>from</b>, <b>of</b>, <b>through</b>, <b>with</b>.",
+      "examples": [
+        "He died <b>for</b> the country.",
+        "She is suffering <b>from</b> fever.",
+        "Lost his pen <b>through</b> negligence.",
+        "They trembled <b>with</b> fear."
+      ]
+    }
+  ],
+
+  "conjunctions": [
+    {
+      "sectionTitle": "Conjunction",
+      "sectionContent": "A conjunction is a part of speech or word that connects –<br>- One word to another word.<br>- One word to another clause.<br>- One sentence to another sentence.<br><br>Conjunction হচ্ছে এমন শব্দসমূহ যারা এক শব্দকে অন্য শব্দের সাথে, এক শব্দকে অন্য clause এর সাথে বা এক Sentence কে অন্য Sentence এর সাথে সংযুক্ত করে।",
+      "examples": [
+        "Example: Rupom and Rifat are two brothers. (<b>noun to noun</b>)",
+        "Example: You and I will go there. (<b>Pronoun to pronoun</b>)",
+        "Example: He is so weak that he cannot walk."
+      ]
+    },
+    {
+      "sectionTitle": "Types of Conjunctions",
+      "sectionContent": "Conjunctions can be classified into three main types: Coordinate Conjunctions, Subordinate Conjunctions, and Correlative Conjunctions.<br><br>Conjunction তিনটি প্রধান ধরনের হয়ে থাকে: <b>Coordinate Conjunctions</b>, <b>Subordinate Conjunctions</b>, এবং <b>Correlative Conjunctions</b>।",
+      "examples": [
+        "Example of Coordinate Conjunction: She stood first and got a prize.",
+        "Example of Subordinate Conjunction: He never gives up until he wins.",
+        "Example of Correlative Conjunction: He is both a fool and a knave."
+      ]
+    },
+    {
+      "sectionTitle": "Coordinate Conjunction",
+      "sectionContent": "Coordinate conjunctions such as <b>and</b>, <b>but</b>, <b>or</b>, <b>nor</b>, <b>for</b>, <b>so</b>, or <b>yet</b> are used to join individual words, phrases, and independent clauses.<br><br><b>Coordinate Conjunctions</b> যেমন <b>and</b>, <b>but</b>, <b>or</b>, <b>nor</b>, <b>for</b>, <b>so</b>, <b>yet</b> ইত্যাদি শব্দ বা বাক্যাংশ যোগ করার জন্য ব্যবহৃত হয়।",
+      "examples": [
+        "She stood first and got a prize.",
+        "He is sad but hopeful.",
+        "You must read or you may fail in the examination."
+      ]
+    },
+    {
+      "sectionTitle": "Subordinate Conjunction",
+      "sectionContent": "Subordinate conjunctions such as <b>since</b>, <b>because</b>, <b>although</b>, <b>as</b>, <b>until</b> etc. are used to join an independent clause to a dependent clause.<br><br><b>Subordinate Conjunctions</b> যেমন <b>since</b>, <b>because</b>, <b>although</b>, <b>as</b>, <b>until</b> ইত্যাদি একটি Independent clause কে dependent clause এর সাথে সংযুক্ত করার জন্য ব্যবহৃত হয়।",
+      "examples": [
+        "He never gives up until he wins.",
+        "Since she had the headache, she did not go to work.",
+        "Though he loved her cousin, he married another one."
+      ]
+    },
+    {
+      "sectionTitle": "Correlative Conjunctions",
+      "sectionContent": "Correlative conjunctions are pairs of conjunctions such as <b>both…and</b>, <b>either…..or</b>, <b>neither……nor</b> etc. They are used to link words, phrases, or clauses that are grammatically similar.<br><br><b>Correlative Conjunctions</b> হলো conjunctions এর জোড়া যেমন <b>both… and</b>, <b>either… or</b>, <b>neither… nor</b> ইত্যাদি, যেগুলি শব্দ, বাক্যাংশ বা clauses কে যোগ করার জন্য ব্যবহৃত হয়।",
+      "examples": [
+        "He is both a fool and a knave. (<b>noun to noun</b>)",
+        "She is both wise and good. (<b>adjective to adjective</b>)",
+        "He must either work or go. (<b>verb to verb</b>)",
+        "He behaved neither wisely nor kindly. (<b>adverb to adverb</b>)",
+        "He is so tired that he cannot run."
+      ]
+    },
+    {
+      "sectionTitle": "Examples with Bangla Meaning",
+      "sectionContent": "Here are examples with the meanings in Bangla:<br><br>এখানে কিছু উদাহরণ দেওয়া হলো যার সাথে বাংলা অর্থ দেওয়া আছে:",
+      "examples": [
+        "He is both a fool and a knave. (<b>noun to noun</b>) => সে একদিকে পাগল এবং অন্যদিকে ঠকানো।",
+        "He is so tired that he cannot run. => সে এতটাই ক্লান্ত যে দৌড়াতে পারছে না।",
+        "No sooner had I sat down than they left the room. => আমি বসে থাকতে না থাকতে তারা রুম থেকে চলে গেল।",
+        "Hardly had I left the room when it began to rain. => আমি রুম ছাড়তে না ছাড়তেই বৃষ্টি শুরু হয়ে গেল।",
+        "Scarcely had I left the room when it began to rain. => আমি রুম ছাড়তেই বৃষ্টি শুরু হয়ে গেল।",
+        "She has none else but her mother. => তার কাছে আর কেউ নেই, শুধু তার মা।"
+      ]
+    }
+  ],
+
+
+  "interjections": [
+    {
+      "sectionTitle": "Interjections",
+      "sectionContent": "The part of speech that expresses a strong feeling or sudden emotion or sentiment is called interjection or exclamation. Generally interjections are used in Exclamatory sentences and take often note of exclamation as punctuation.</br></br>যে শব্দগুলো আকস্মিক আবেগ, দৃঢ় অনুভূতি বা মনের ভাব প্রকাশ করে, তাদের Interjection বলে। সাধারণত Exclamatory Sentence এ Interjection ব্যবহৃত হয়, এবং এমন বাক্যের শেষে যতি চিহ্ন হিসেবে আশ্চর্যবোধক চিহ্ন (!) ব্যবহৃত হয়।</br></br>Interjections are not grammatically related to any other part of the sentence.",
+      "examples": [
+        "Examples of Interjections: <b>Oh no</b>, <b>Hey</b>, <b>Uh</b>, <b>Hurrah</b>, <b>Wow</b>.",
+        "Example 1: <b>Oh no</b>! I missed the schedule of the class. (Express failure)",
+        "Example 2: <b>Hey</b>! Don’t you hear me? (Calling attention)",
+        "Example 3: <b>Hey</b>! Take it easy. (Calling attention)",
+        "Example 4: <b>Uh</b>, I forget the answer. (Express hesitation)",
+        "Example 5: <b>Hurrah</b>! We have won the match. (Express joy)",
+        "Example 6: <b>Wow</b>! She is amazing. (Express surprise)"
+      ]
+    }
+  ]
+
+
+
+
+            
+        };
+
+        // Function to switch tabs
+        function switchTab(tabName) {
+            contentContainer.innerHTML = ""; // Clear existing content
+
+            const tabContent = tabsData[tabName];
+            if (tabContent) {
+                tabContent.forEach(section => {
+                    const sectionDiv = document.createElement('div');
+                    sectionDiv.classList.add('card');
+                    sectionDiv.innerHTML = `
+                        <h3 class="section-title">${section.sectionTitle}</h3>
+                        <p class="section-content">${section.sectionContent}</p>
+                        <div class="example-box">
+                            <strong>Examples:</strong>
+                            <ul class="example-list">
+                                ${section.examples.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                    contentContainer.appendChild(sectionDiv);
+                });
+            }
+        }
+
+        // Event listeners for tab buttons
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const activeTab = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                switchTab(activeTab);
+            });
+        });
+
+        // Initialize with the Pronouns tab
+        switchTab('pronouns');
+    </script>
+
+</body>
+</html>
